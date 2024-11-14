@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Player</title>
+</head>
+<body>
+<h2>YouTube Video Player</h2>
+<div id="player-container">
+    <!-- YouTube player iframe -->
+    <iframe id="youtubePlayer" width="560" height="315" frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+    </iframe>
+</div>
+
+<!-- Input for new video ID -->
+<div>
+    <input type="text" id="videoIdInput" placeholder="Enter YouTube Video ID">
+    <button onclick="loadNewVideo()">Play Video</button>
+</div>
+
+<script>
+    // Set initial video ID from backend (passed as a model attribute)
+    const initialVideoId = /*[[${videoId}]]*/ 'dQw4w9WgXcQ';
+    loadVideo(initialVideoId);
+
+    // Function to load a new video in the iframe
+    function loadVideo(videoId) {
+        const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+        document.getElementById('youtubePlayer').src = embedUrl;
+    }
+
+    // Function to load a video based on user input
+    function loadNewVideo() {
+        const videoId = document.getElementById('videoIdInput').value;
+        loadVideo(videoId);
+    }
+</script>
+</body>
+</html>
